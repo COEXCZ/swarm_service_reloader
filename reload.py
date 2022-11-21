@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 
 import docker
 import requests
@@ -38,11 +39,14 @@ class SwarmServiceReloader:
 	def get_last_value(self):
 		last_value = ""
 
-		with open(self.last_value_file_path, 'r') as last_file:
-			try:
-				last_value = last_file.read()
-			except Exception as e:
-				print(f"Reading last value failed: {e}")
+		try:
+			with open(self.last_value_file_path, 'r+') as last_file:
+				try:
+					last_value = last_file.read()
+				except Exception as e:
+					print(f"Reading last value failed: {e}")
+		except FileNotFoundError:
+			print("Last value file does not exist")
 
 		return last_value
 
