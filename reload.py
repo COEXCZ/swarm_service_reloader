@@ -53,12 +53,14 @@ class SwarmServiceReloader:
 	def save_last_value(self, last_value: str):
 		with open(self.last_value_file_path, 'w') as last_file:
 			last_file.write(last_value)
+			last_file.flush()
 			print("Last value has benn updated.")
 
 	def get_latest_value(self):
 		response = requests.get(self.watched_url)
 
 		if response.ok:
+			print(f"Downloaded latest value {response.text}.")
 			return response.text
 		else:
 			print(f"Reading latest value from {self.watched_url} failed.")
