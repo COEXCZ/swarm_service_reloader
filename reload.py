@@ -51,7 +51,7 @@ class SwarmServiceReloader:
 		return last_value
 
 	def save_last_value(self, last_value: str):
-		with open(self.last_value_file_path, 'rw') as last_file:
+		with open(self.last_value_file_path, 'w') as last_file:
 			last_file.write(last_value)
 			print("Last value has benn updated.")
 
