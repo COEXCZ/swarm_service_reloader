@@ -33,8 +33,7 @@ class SwarmServiceReloader:
 
 		if last_value != latest_value or not last_value:
 			self.reload_services()
-
-		self.save_last_value(last_value=latest_value)
+			self.save_last_value(last_value=latest_value)
 
 	def get_last_value(self):
 		last_value = ""
